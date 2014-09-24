@@ -8,11 +8,13 @@ TEMPLATE = app
 
 SOURCES += \
     main.cpp \
-    MultisortTableView.cpp
+    MultisortTableView.cpp \
+    MultisortTreeView.cpp
 
 HEADERS += \
     AlphanumComparer.h \
     MultisortTableView.h \
+    MultisortTreeView.h \
     AlphanumSortProxyModel.h \
     ColumnsSorter.h
 
