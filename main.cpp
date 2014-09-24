@@ -55,13 +55,13 @@ int main(int argc, char *argv[])
     users->setTable( "users" );
     users->select( );
 
-    MultisortTableView tableView;
-    tableView.setModifier( Qt::ControlModifier );
-    tableView.setSortingEnabled( true );
-    tableView.setSortIcons( QIcon(":/icons/bullet_arrow_up.png"),
+    MultisortTableView* tableView = new MultisortTableView;
+    tableView->setModifier( Qt::ControlModifier );
+    tableView->setSortingEnabled( true );
+    tableView->setSortIcons( QIcon(":/icons/bullet_arrow_up.png"),
                             QIcon(":/icons/bullet_arrow_down.png") );
-    tableView.setSelectionBehavior( QAbstractItemView::SelectRows );
-    tableView.setModel( users );
+    tableView->setSelectionBehavior( QAbstractItemView::SelectRows );
+    tableView->setModel( users );
 
     // -------------------------------------
     // Tree View
@@ -77,22 +77,22 @@ int main(int argc, char *argv[])
     preparedRow.first()->appendRow(prepareRow("Zuckerberg", "Mark11", "1"));
     preparedRow.first()->appendRow(prepareRow("Zuckerberg", "Mark09", "2"));
 
-    MultisortTreeView treeView;
-    treeView.setModifier( Qt::ControlModifier );
-    treeView.setSortingEnabled( true );
-    treeView.setSortIcons( QIcon(":/icons/bullet_arrow_up.png"),
+    MultisortTreeView* treeView = new MultisortTreeView;
+    treeView->setModifier( Qt::ControlModifier );
+    treeView->setSortingEnabled( true );
+    treeView->setSortIcons( QIcon(":/icons/bullet_arrow_up.png"),
                             QIcon(":/icons/bullet_arrow_down.png") );
-    treeView.setSelectionBehavior( QAbstractItemView::SelectRows );
-    treeView.setModel( standardModel );
+    treeView->setSelectionBehavior( QAbstractItemView::SelectRows );
+    treeView->setModel( standardModel );
 
     // -------------------------------------
     // Combine In Tab Widget
     // -------------------------------------
-    QTabWidget* tabWidget = new QTabWidget;
-    tabWidget->addTab(&tableView,"Table View");
-    tabWidget->addTab(&treeView,"Tree View");
-    tabWidget->resize(400, 300);
-    tabWidget->show();
+    QTabWidget tabWidget;
+    tabWidget.addTab(tableView,"Table View");
+    tabWidget.addTab(treeView,"Tree View");
+    tabWidget.resize(400, 300);
+    tabWidget.show();
 
     return a.exec();
 }
